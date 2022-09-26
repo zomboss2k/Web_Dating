@@ -83,20 +83,15 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  const getUsers = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/getUser`);
-      if (response.data.success) {
-        dispatch({ type: "USER_LOADED_SUCCESS", payload: response.data.users });
-      }
-    } catch (error) {
-      return error.response.data
-        ? error.response.data
-        : { success: false, message: "Lỗi server" };
-    }
+  const logoutUser = () => {
+    localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+    dispatch({
+      type: "SET_AUTH",
+      payload: { isAuthenticated: false, user: null },
+    });
   };
 
-  const authContextData = { loginUser, registerUser, getUsers, authState };
+  const authContextData = { loginUser, registerUser, logoutUser, authState };
 
   //   return provider
   return (

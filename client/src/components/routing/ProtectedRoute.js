@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import { Spinner } from "react-bootstrap";
+import { Col, Row, Spinner } from "react-bootstrap";
 import NavbarMenu from "../layout/NavbarMenu";
 
 const ProtectedRoute = () => {
@@ -18,10 +18,16 @@ const ProtectedRoute = () => {
 
   return isAuthenticated ? (
     <>
-      <NavbarMenu />
-      <div className="page-content p-5">
-        <Outlet />
-      </div>
+      {/* <Row> */}
+        {/* <Col sm="4"> */}
+          <NavbarMenu />
+        {/* </Col> */}
+        {/* <Col sm="8"> */}
+          <div className="page-content p-5">
+            <Outlet />
+          </div>
+        {/* </Col> */}
+      {/* </Row> */}
     </>
   ) : (
     <Navigate to="/login" />

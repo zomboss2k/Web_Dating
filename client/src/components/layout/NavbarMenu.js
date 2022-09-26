@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { Nav } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Nav, Tabs, Tab } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import { LOCAL_STORAGE_TOKEN_NAME } from "../../contexts/constants";
 import IsMath from "./IsMath";
+import Messager from "./Messager";
 
 const NavbarMenu = () => {
   const {
@@ -12,14 +12,10 @@ const NavbarMenu = () => {
       user: { avatar },
       user: { email },
     },
+    logoutUser,
   } = useContext(AuthContext);
 
-  const navigate = useNavigate();
-
-  const logout = () => {
-    localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
-    navigate("/");
-  };
+  const logout = () => logoutUser();
 
   return (
     <>
@@ -32,6 +28,7 @@ const NavbarMenu = () => {
                 alt="..."
                 width={65}
                 className="mr-3 rounded-circle img-thumbnail shadow-sm"
+                style={{ height: "65px" }}
               />
             </Link>
             <div className="media-body">
@@ -40,20 +37,37 @@ const NavbarMenu = () => {
             </div>
           </div>
         </div>
-
         <Nav className="flex-column bg-white">
           <Nav.Item>
-            <Link
-              to="/dashboard"
-              className="nav-link text-dark font-italic bg-light"
-            >
+            <Link to="/dashboard" className="nav-link text-dark bg-light">
               <i className="bi bi-microsoft mr-3 text-primary fa-fw" />
               Home
             </Link>
           </Nav.Item>
+          <Nav.Item>
+            <Link
+              to=""
+              className="nav-link text-dark bg-light"
+              onClick={logout}
+            >
+              <i className="bi bi-microsoft mr-3 text-primary fa-fw" />
+              Logout
+            </Link>
+          </Nav.Item>
         </Nav>
 
-        <IsMath />
+        <Tabs
+          defaultActiveKey="match"
+          id="uncontrolled-tab-example"
+          className="ml-2 mb-1 font-weight-bold text-uppercase"
+        >
+          <Tab eventKey="match" title="CÁC TƯƠNG HỢP">
+            <IsMath />
+          </Tab>
+          <Tab eventKey="messages" title="TRÒ CHUYỆN">
+            <Messager />
+          </Tab>
+        </Tabs>
       </div>
     </>
   );

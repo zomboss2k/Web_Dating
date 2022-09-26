@@ -1,50 +1,43 @@
-import React from "react";
-import { Card, Col, Row, Tab, Tabs } from "react-bootstrap";
-import Messager from "./Messager";
+import React, { useContext, useEffect } from "react";
+import { Card, Col, Row } from "react-bootstrap";
+import { UserContext } from "../../contexts/UserContext";
 
 const IsMath = () => {
+  const {
+    userState: { users, userLoading },
+    getUsers,
+  } = useContext(UserContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      getUsers();
+    };
+    fetchData();
+  }, []);
   return (
-    <>
-      <Tabs
-        defaultActiveKey="match"
-        id="uncontrolled-tab-example"
-        className="ml-2 mb-1 font-weight-bold text-uppercase"
-      >
-        <Tab eventKey="match" title="CÁC TƯƠNG HỢP">
-          <Row style={{ margin: 0 }}>
-            <Col style={{ padding: "5px" }}>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://res.cloudinary.com/zomboss/image/upload/v1661182037/test/rcu0hru5dhn7zg4fmcdz.jpg"
-                />
-                <Card.Body className="p-2">
-                  <p className="text-center text-black font-weight-bold m-0">
-                    Lê Tiến Đạt
-                  </p>
-                </Card.Body>
-              </Card>
-            </Col>
-            <Col style={{ padding: "5px" }}>
-              <Card>
-                <Card.Img
-                  variant="top"
-                  src="https://res.cloudinary.com/zomboss/image/upload/v1661182037/test/rcu0hru5dhn7zg4fmcdz.jpg"
-                />
-                <Card.Body className="p-2">
-                  <p className="text-center text-black font-weight-bold m-0">
-                    Lê Tiến Đạt
-                  </p>
-                </Card.Body>
-              </Card>
-            </Col>
-          </Row>
-        </Tab>
-        <Tab eventKey="messages" title="TRÒ CHUYỆN">
-            <Messager />
-        </Tab>
-      </Tabs>
-    </>
+    <div className="isMatch">
+      <Row style={{ margin: 0 }}>
+        {users.map((user) => (
+          <Col key={user._id} sm="6" style={{ padding: "5px" }}>
+            <Card>
+              <Card.Img
+                style={{ height: "187px" }}
+                variant="top"
+                src={user.avatar}
+              />
+              <Card.Body className="p-2">
+                <p
+                  className="text-center font-weight-bold m-0"
+                  style={{ color: "#000" }}
+                >
+                  {user.fullname}
+                </p>
+              </Card.Body>
+            </Card>
+          </Col>
+        ))}
+      </Row>
+    </div>
   );
 };
 

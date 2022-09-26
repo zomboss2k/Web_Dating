@@ -23,7 +23,16 @@ const RegisterForm = () => {
   // Hiển thị thông báo
   const [alert, setAlert] = useState(null);
 
-  const { username, fullname, age, mobile, email, gender, password, confirmPassword } = registerForm;
+  const {
+    username,
+    // fullname,
+    // age,
+    // mobile,
+    email,
+    // gender,
+    password,
+    confirmPassword,
+  } = registerForm;
 
   const onChangeRegisterForm = (event) => {
     setRegisterForm({
@@ -75,7 +84,7 @@ const RegisterForm = () => {
           />
         </Form.Group>
 
-        <Form.Group className="my-2">
+        {/* <Form.Group className="my-2">
           <Form.Control
             type="text"
             placeholder="Fullname"
@@ -84,7 +93,7 @@ const RegisterForm = () => {
             value={fullname}
             onChange={onChangeRegisterForm}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Form.Group className="my-2">
           <Form.Control
@@ -97,7 +106,7 @@ const RegisterForm = () => {
           />
         </Form.Group>
 
-        <Form.Group className="my-2">
+        {/* <Form.Group className="my-2">
           <Form.Control
             type="text"
             placeholder="Age"
@@ -128,7 +137,7 @@ const RegisterForm = () => {
             value={gender}
             onChange={onChangeRegisterForm}
           />
-        </Form.Group>
+        </Form.Group> */}
 
         <Form.Group className="my-2">
           <Form.Control
@@ -152,9 +161,11 @@ const RegisterForm = () => {
           />
         </Form.Group>
 
-        <Button className="my-2" variant="success" type="submit">
-          Đăng Ký
-        </Button>
+        {/* <Link to="/onboarding"> */}
+          <Button className="my-2" variant="success" type="submit">
+            Đăng Ký
+          </Button>
+        {/* </Link> */}
       </Form>
       <p>
         Bạn đã có tài khoản?

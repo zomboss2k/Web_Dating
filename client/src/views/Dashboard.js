@@ -2,6 +2,7 @@ import { React, useContext, useEffect } from "react";
 import { Carousel, Col, Row, Spinner } from "react-bootstrap";
 // import { PostContext } from "../contexts/PostContext";
 import { UserContext } from "../contexts/UserContext";
+import Match from "../components/layout/Match";
 
 const Dashboard = () => {
   const {
@@ -10,7 +11,10 @@ const Dashboard = () => {
   } = useContext(UserContext);
 
   useEffect(() => {
-    getUsers();
+    const fetchData = async () => {
+      getUsers();
+    };
+    fetchData();
   }, []);
 
   let body = null;
@@ -24,57 +28,39 @@ const Dashboard = () => {
   } else {
     body = (
       <>
-      <Row className="row-cols-1"></Row>
-      {users.map(user => (
-        <Col key={user._id}>
-          {user}
-        </Col>
-      ))}
+        {/* <Row className="row-cols-1"></Row>
+        {users.map((user) => (
+          <Col key={user._id}>
+            <Match user={user} />
+          </Col>
+        ))} */}
+        {users.map((user) => (
+          <Carousel
+            key={user._id}
+            variant="dark"
+            style={{ width: "500px", margin: "auto" }}
+          >
+            <Carousel.Item className="text-black">
+              <img
+                className="d-block w-100"
+                src={user.avatar}
+                alt="First slide"
+              />
+              <Carousel.Caption>
+                <h5>{user.fullname}</h5>
+                <p>{user.desc}</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
+        ))}
       </>
-    )
+    );
   }
 
   return (
     <>
-    {body}
+      {body}
       {/* <h2 className="display-4 text-white">Dashboard</h2> */}
-      {/* <Carousel variant="dark" style={{ width: "500px", margin: "auto" }}>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://img.vn/uploads/danhmuc/australia-1564026865-dudpi.jpg"
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <h5>First slide label</h5>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://img.vn/uploads/danhmuc/australia-1564026865-dudpi.jpg"
-            alt="Second slide"
-          />
-          <Carousel.Caption>
-            <h5>Second slide label</h5>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://img.vn/uploads/danhmuc/australia-1564026865-dudpi.jpg"
-            alt="Third slide"
-          />
-          <Carousel.Caption>
-            <h5>Third slide label</h5>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel> */}
     </>
   );
 };

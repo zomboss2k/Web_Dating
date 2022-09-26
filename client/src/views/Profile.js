@@ -39,7 +39,7 @@ const Profile = () => {
                   src={avatar}
                   alt="avatar"
                   className="rounded-circle"
-                  style={{ width: "150px" }}
+                  style={{ width: "150px", height: "150px" }}
                   fluid
                 />
                 <p className="text-muted mb-1 mt-3">{fullname}</p>
@@ -64,6 +64,7 @@ const Profile = () => {
                     <MDBIcon
                       fab
                       icon="github fa-lg"
+                      // icon="github fa-lg"
                       style={{ color: "#333333" }}
                     />
                     <MDBCardText>mdbootstrap</MDBCardText>

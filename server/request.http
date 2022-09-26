@@ -31,7 +31,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJjM
 
 ###
 
-GET http://localhost:5000/api/getPost
+GET http://localhost:5000/api/getUser
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJjMWIzMGNlYWYxMjllZTE5YmFlZDQiLCJpYXQiOjE2NjQwNDA5NTV9.OZnT1yhTJtU9uX2GEwiVni7gsjtmSQ4jga2iFiJO9mc
 
 ###

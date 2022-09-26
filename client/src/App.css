@@ -15,7 +15,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+align-items: center;
 	text-align: center;
 }
 
@@ -29,83 +29,6 @@
 	color: white;
 }
 
-.spinner-container {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	-moz-transform: translateX(-50%) translateY(-50%);
-	-webkit-transform: translateX(-50%) translateY(-50%);
-	transform: translateX(-50%) translateY(-50%);
-}
-
-/* Post button */
-.post-button {
-	padding-top: 0;
-	background: transparent;
-	border: none;
-}
-
-.post-button:hover {
-	background: transparent;
-}
-
-a.post-button.btn:focus,
-a.post-button.btn:active {
-	outline: none;
-	background: transparent;
-	border: none;
-	box-shadow: none;
-}
-
-button.post-button.btn:focus,
-button.post-button.btn:active {
-	outline: none;
-	background: transparent;
-	border: none;
-	box-shadow: none;
-}
-
-/* Floating add button */
-.btn-floating {
-	position: fixed;
-	right: 3rem;
-	bottom: 3rem;
-	background: transparent;
-	border: none;
-}
-
-.btn-floating:hover {
-	background: transparent;
-}
-
-.btn-floating:focus,
-.btn-floating:active {
-	outline: none;
-	background: transparent;
-	border: none;
-	box-shadow: none;
-}
-
-/* Add new post tooltip */
-.tooltip {
-	background: transparent;
-}
-
-.tooltip .arrow::before {
-	border-left-color: #78c2ad;
-}
-
-.tooltip-inner {
-	background: #78c2ad;
-}
-
-/* Post border thicker */
-.border-success,
-.border-warning,
-.border-danger {
-	border-width: 2px;
-}
-
 /* Post title */
 .post-title {
 	margin-bottom: 0.5rem;
@@ -115,7 +38,7 @@ button.post-button.btn:active {
 .vertical-nav {
     min-width: 19rem;
     width: 19rem;
-    height: 100vh;
+    /* height: 100vh; */
     position: fixed;
     top: 0;
     left: 0;
@@ -131,7 +54,7 @@ button.post-button.btn:active {
   
   /* for toggle behavior */
   
-  #sidebar.active {
+  /* #sidebar.active {
 	margin-left: -17rem;
   }
   
@@ -155,19 +78,12 @@ button.post-button.btn:active {
 	  margin-left: 17rem;
 	  width: calc(100% - 17rem);
 	}
-  }
-  
-  /*
-  *
-  * ==========================================
-  * FOR DEMO PURPOSE
-  * ==========================================
-  *
-  */
+  } */
   
   body {
 	/* background: #599fd9; */
 	/* background: -webkit-linear-gradient(to right, #599fd9, #c2e59c); */
+	color: #000000;
 	background: linear-gradient(to right, #599fd9, #c2e59c);
 	min-height: 100vh;
 	overflow-x: hidden;
@@ -183,5 +99,17 @@ button.post-button.btn:active {
   }
   
   .text-gray {
-	color: #aaa;
+	color: #000000;
+  }
+/* Tạo scrollba */
+  .isMatch {
+	height: 63vh;
+    overflow: auto;
+	overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+  }
+/* Ẩn scrollba */
+  .isMatch::-webkit-scrollbar { 
+	width: 0 !important;
+	display: none; 
   }

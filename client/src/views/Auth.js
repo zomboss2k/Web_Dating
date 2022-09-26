@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
 import HomePage from "../views/HomePage";
+import OnBoarding from "../components/layout/OnBoarding";
 
 const Auth = ({ authRoute }) => {
   const {
@@ -27,6 +28,7 @@ const Auth = ({ authRoute }) => {
         {authRoute === "home" && <HomePage />}
         {authRoute === "login" && <LoginForm />}
         {authRoute === "register" && <RegisterForm />}
+        {/* {authRoute === "onboarding" && <OnBoarding />} */}
       </>
     );
   return (

@@ -12,7 +12,7 @@ import UserContextProvider from "./contexts/UserContext";
 const App = () => {
   return (
     <AuthContextProvider>
-      <UserContextProvider>
+      <UserContextProvider> 
         <Router>
           <Routes>
             <Route exact path="/" element={<Auth authRoute="home" />} />
@@ -22,6 +22,11 @@ const App = () => {
               path="/register"
               element={<Auth authRoute="register" />}
             />
+            {/* <Route
+              exact
+              path="/onboarding"
+              element={<Auth authRoute="onboarding" />}
+            /> */}
             <Route exact path="/dashboard" element={<ProtectedRoute />}>
               <Route exact path="/dashboard" element={<Dashboard />} />
             </Route>

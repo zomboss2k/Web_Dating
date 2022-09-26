@@ -4,3 +4,7 @@ export const apiUrl =
     : "gidodi";
 
 export const LOCAL_STORAGE_TOKEN_NAME = 'dating'
+
+export const USERS_LOADED_SUCCESS = 'USERS_LOADED_SUCCESS'
+export const USERS_LOADED_FAIL = 'USERS_LOADED_FAIL'
+
