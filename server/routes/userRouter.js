@@ -6,7 +6,8 @@ router.get("/getUser", verifyToken, userCtrl.getUser);
 
 router.get("/getUser/:id", verifyToken, userCtrl.getOneUser);
 
-router.put("/updateUser/", verifyToken, userCtrl.updateUser);
+router.put("/updateUser/:id", verifyToken, userCtrl.updateUser);
+// router.patch('/updateUser', userCtrl.updateUser)
 
 // router.delete("/deletePost/:id", verifyToken, userCtrl.deletePost);
 

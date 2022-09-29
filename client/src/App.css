@@ -1,60 +1,61 @@
 .landing {
-	position: relative;
-	background: url('https://tinder.com/static/build/744fe6d80266616aba687006b7d764ad.webp') no-repeat center center/cover;
-	height: 100vh;
+  position: relative;
+  background: url("https://tinder.com/static/build/744fe6d80266616aba687006b7d764ad.webp")
+    no-repeat center center/cover;
+  height: 100vh;
 }
 
 .dark-overlay {
-	background-color: rgba(0, 0, 0, 0.5);
-	height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  height: 100%;
 }
 
 .landing-inner {
-	height: 100%;
-	margin: auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-align-items: center;
-	text-align: center;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .landing-inner form {
-	width: 30%;
+  width: 30%;
 }
 
 .landing-inner h1,
 .landing-inner h4,
 .landing-inner p {
-	color: white;
+  color: white;
 }
 
 /* Post title */
 .post-title {
-	margin-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 /* Navbar */
 .vertical-nav {
-    min-width: 19rem;
-    width: 19rem;
-    /* height: 100vh; */
-    position: fixed;
-    top: 0;
-    left: 0;
-    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.4s;
-  }
+  min-width: 19rem;
+  width: 19rem;
+  /* height: 100vh; */
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+}
 
-  .page-content {
-	width: calc(100% - 19rem);
-	margin-left: 19rem;
-	transition: all 0.4s;
-  }
-  
-  /* for toggle behavior */
-  
-  /* #sidebar.active {
+.page-content {
+  width: calc(100% - 19rem);
+  margin-left: 19rem;
+  transition: all 0.4s;
+}
+
+/* for toggle behavior */
+
+/* #sidebar.active {
 	margin-left: -17rem;
   }
   
@@ -79,37 +80,111 @@ align-items: center;
 	  width: calc(100% - 17rem);
 	}
   } */
-  
-  body {
-	/* background: #599fd9; */
-	/* background: -webkit-linear-gradient(to right, #599fd9, #c2e59c); */
-	color: #000000;
-	background: linear-gradient(to right, #599fd9, #c2e59c);
-	min-height: 100vh;
-	overflow-x: hidden;
-  }
-  
-  .separator {
-	margin: 3rem 0;
-	border-bottom: 1px dashed #fff;
-  }
-  
-  .text-uppercase {
-	letter-spacing: 0.1em;
-  }
-  
-  .text-gray {
-	color: #000000;
-  }
+
+body {
+  /* background: #599fd9; */
+  /* background: -webkit-linear-gradient(to right, #599fd9, #c2e59c); */
+  color: #000000;
+  background: linear-gradient(to right, #599fd9, #c2e59c);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+.gradient-custom-2 {
+  /* fallback for old browsers */
+  background: #fbc2eb;
+
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(251, 194, 235, 1),
+    rgba(166, 193, 238, 1)
+  );
+
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(
+    to right,
+    rgba(251, 194, 235, 1),
+    rgba(166, 193, 238, 1)
+  );
+}
+.separator {
+  margin: 3rem 0;
+  border-bottom: 1px dashed #fff;
+}
+
+.text-uppercase {
+  letter-spacing: 0.1em;
+}
+
+.text-gray {
+  color: #000000;
+}
+.text-black {
+  color: #000;
+}
+/* Messager */
+.nav-item__img {
+  width: 65px;
+  height: 65px;
+  margin-right: 10px;
+}
 /* Tạo scrollba */
-  .isMatch {
-	height: 63vh;
-    overflow: auto;
-	overflow: -moz-scrollbars-none;
-    -ms-overflow-style: none;
-  }
+.isMatch {
+  height: 63vh;
+  overflow: auto;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
 /* Ẩn scrollba */
-  .isMatch::-webkit-scrollbar { 
-	width: 0 !important;
-	display: none; 
-  }
+.isMatch::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
+
+/*  */
+/* .slider {
+  position: relative;
+  height: 25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 41rem;
+  height: 25rem;
+  border-radius: 10px;
+}
+
+.right-arrow {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.left-arrow {
+  position: absolute;
+  top: 50%;
+  left: 32px;
+  font-size: 3rem;
+  color: #000;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+}
+
+.slide {
+  opacity: 0;
+  transition-duration: 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  transition-duration: 1s;
+  transform: scale(1.08);
+} */

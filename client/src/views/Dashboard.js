@@ -2,7 +2,8 @@ import { React, useContext, useEffect } from "react";
 import { Carousel, Col, Row, Spinner } from "react-bootstrap";
 // import { PostContext } from "../contexts/PostContext";
 import { UserContext } from "../contexts/UserContext";
-import Match from "../components/layout/Match";
+import axios from "axios";
+// import Match from "../components/layout/Match";
 
 const Dashboard = () => {
   const {
@@ -61,6 +62,46 @@ const Dashboard = () => {
     <>
       {body}
       {/* <h2 className="display-4 text-white">Dashboard</h2> */}
+
+      {/* <Carousel slide={false}>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="https://luv.vn/wp-content/uploads/2022/06/gai-xinh-cap-3-luv-17.jpg"
+          alt="First slide"
+        />
+        <Carousel.Caption>
+          <h3>First slide label</h3>
+          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="https://anhdephd.vn/wp-content/uploads/2022/04/hinh-nen-gai-xinh.jpg"
+          alt="Second slide"
+        />
+
+        <Carousel.Caption>
+          <h3>Second slide label</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src="https://www.dungplus.com/wp-content/uploads/2019/12/girl-xinh-1-480x600.jpg"
+          alt="Third slide"
+        />
+
+        <Carousel.Caption>
+          <h3>Third slide label</h3>
+          <p>
+            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+          </p>
+        </Carousel.Caption>
+      </Carousel.Item>
+    </Carousel> */}
     </>
   );
 };

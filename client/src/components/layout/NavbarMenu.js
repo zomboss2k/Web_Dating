@@ -50,7 +50,7 @@ const NavbarMenu = () => {
               className="nav-link text-dark bg-light"
               onClick={logout}
             >
-              <i className="bi bi-microsoft mr-3 text-primary fa-fw" />
+              <i className="bi bi-box-arrow-left mr-3 text-primary fa-fw" />
               Logout
             </Link>
           </Nav.Item>

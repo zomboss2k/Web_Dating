@@ -1,11 +1,11 @@
-import LoginForm from "../components/auth/LoginForm";
-import RegisterForm from "../components/auth/RegisterForm";
-import { AuthContext } from "../contexts/AuthContext";
+import LoginForm from "./LoginForm";
+import RegisterForm from "./RegisterForm";
+import { AuthContext } from "../../contexts/AuthContext";
 import { useContext } from "react";
 import { Navigate } from "react-router-dom";
 import { Spinner } from "react-bootstrap";
-import HomePage from "../views/HomePage";
-import OnBoarding from "../components/layout/OnBoarding";
+import HomePage from "../HomePage";
+// import OnBoarding from "../../components/layout/OnBoarding";
 
 const Auth = ({ authRoute }) => {
   const {

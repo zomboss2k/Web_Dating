@@ -40,7 +40,7 @@ const userCtrl = {
   // @Router PUT api/updateUser
   // @Desc Update a new user
   // @Access Private
-  updateUser: async function (req, res) {
+  updateUser: async (req, res) => {
     const {
       fullname,
       email,
@@ -54,10 +54,13 @@ const userCtrl = {
     } = req.body;
 
     if (!fullname)
-      return res.status(400).json({ msg: "Please add your full name." });
+      return res
+        .status(400)
+        .json({ status: false, message: "Chưa nhập Họ và tên" });
+
     try {
       await User.findOneAndUpdate(
-        { _id: req.userId },
+        { _id: req.params.id },
         {
           fullname,
           email,
@@ -72,8 +75,9 @@ const userCtrl = {
       );
 
       res.json({ msg: "Update Success!" });
-    } catch (err) {
-      return res.status(500).json({ msg: err.message });
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({ msg: error.message });
     }
   },
 };

@@ -1,10 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Auth from "./views/Auth";
-import AuthContextProvider from "./contexts/AuthContext";
+import Auth from "./views/auth/Auth";
+import AuthContextProvider from "./contexts/AuthContext"
 import Dashboard from "./views/Dashboard";
 import ProtectedRoute from "./components/routing/ProtectedRoute";
-import Profile from "./views/Profile";
+import Profile from "./views/user/Profile";
 import Message from "./views/Message";
 import UserContextProvider from "./contexts/UserContext";
 // import PostContextProvider from "./contexts/PostContext";

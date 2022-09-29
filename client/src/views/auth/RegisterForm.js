@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
-import AlertMessage from "../layout/AlertMessage";
+import AlertMessage from "../../components/layout/AlertMessage";
 
 const RegisterForm = () => {
   // Context
