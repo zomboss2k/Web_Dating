@@ -47,6 +47,14 @@ const userSchema = new mongoose.Schema(
     // followers: [{ type: mongoose.Types.ObjectId, ref: "user" }],
     // following: [{ type: mongoose.Types.ObjectId, ref: "user" }],
     // saved: [{ type: mongoose.Types.ObjectId, ref: "user" }],
+    isAvatarImageSet: {
+      type: Boolean,
+      default: false,
+    },
+    avatarImage: {
+      type: String,
+      default: "",
+    },
   },
   {
     timestamps: true,

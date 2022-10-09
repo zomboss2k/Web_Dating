@@ -1,4 +1,3 @@
-import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Auth from "./views/auth/Auth";
 import AuthContextProvider from "./contexts/AuthContext"
@@ -7,7 +6,7 @@ import ProtectedRoute from "./components/routing/ProtectedRoute";
 import Profile from "./views/user/Profile";
 import Message from "./views/Message";
 import UserContextProvider from "./contexts/UserContext";
-// import PostContextProvider from "./contexts/PostContext";
+import EditProfile from "./views/user/EditProfile";
 
 const App = () => {
   return (
@@ -32,6 +31,9 @@ const App = () => {
             </Route>
             <Route exact path="/profile" element={<ProtectedRoute />}>
               <Route exact path="/profile" element={<Profile />} />
+            </Route>
+            <Route exact path="/edit-profile" element={<ProtectedRoute />}>
+              <Route exact path="/edit-profile" element={<EditProfile />} />
             </Route>
             <Route exact path="/message" element={<ProtectedRoute />}>
               <Route exact path="/message" element={<Message />} />

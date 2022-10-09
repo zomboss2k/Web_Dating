@@ -1,6 +1,13 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useReducer } from "react";
 import { userReducer } from "../reducers/userReducer";
-import { apiUrl, USERS_LOADED_SUCCESS, USERS_LOADED_FAIL } from "./constants";
+import {
+  apiUrl,
+  USERS_LOADED_SUCCESS,
+  USERS_LOADED_FAIL,
+  DELETE_USER,
+  UPDATE_USER,
+  FIND_USER,
+} from "./constants";
 import axios from "axios";
 
 export const UserContext = createContext();
@@ -24,12 +31,46 @@ const UserContextProvider = ({ children }) => {
         });
       }
     } catch (error) {
-     dispatch({ type: USERS_LOADED_FAIL});
+      dispatch({ type: USERS_LOADED_FAIL });
+    }
+  };
+
+  // delete user
+  const deleteUser = async (userId) => {
+    try {
+      const response = await axios.get(`${apiUrl}/delete/${userId}`);
+      if (response.data.success) {
+        dispatch({ type: DELETE_USER, payload: userId });
+      }
+    } catch (error) {
+      dispatch({ type: USERS_LOADED_FAIL });
+    }
+  };
+
+  // Find user when user is updating user
+  const findUser = (userId) => {
+    const user = userState.users.find(user => user._id === userId);
+    dispatch({type: FIND_USER, payload: user})
+  }
+
+  
+
+  // update user
+  const updateUser = async (updateUser) => {
+    try {
+      const response = await axios.put(`${apiUrl}/update/${updateUser._id}`, updateUser);
+      if (response.data.success) {
+        dispatch({ type: UPDATE_USER, payload: response.date.user });
+        return response.data;
+      }
+    } catch (error) {
+      dispatch({ type: USERS_LOADED_FAIL });
+      
     }
   };
 
   //   User Context Data
-  const userContextData = { getUsers, userState };
+  const userContextData = { getUsers,  deleteUser, updateUser, findUser, userState };
 
   return (
     <UserContext.Provider value={userContextData}>

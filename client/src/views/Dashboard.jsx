@@ -1,6 +1,7 @@
 import { React, useContext, useEffect, useState } from "react";
-import { Card, Spinner } from "react-bootstrap";
+import { Card, Container, Spinner } from "react-bootstrap";
 import { UserContext } from "../contexts/UserContext";
+import CardProfile from "./user/CardProfile";
 
 const Dashboard = () => {
   const {
@@ -32,9 +33,9 @@ const Dashboard = () => {
 
   if (userLoading) {
     body = (
-      <div className="spinner-container">
+      <Container className="spinner-container">
         <Spinner animation="border" variant="info" />
-      </div>
+      </Container>
     );
   } else {
     body = (
@@ -54,25 +55,16 @@ const Dashboard = () => {
           }}
           onClick={nextSlide}
         />
-        <div style={{ marginTop: "15px", height: "500px" }}>
+
+        <Container style={{ marginTop: "15px", height: "500px" }}>
           {users.map((user, i) => (
-            <Card key={i} style={{ width: "18rem", margin: "auto" }}>
+            <Card key={user._id} style={{ width: "18rem", margin: "auto" }}>
               {i === current && (
-                <div>
-                  <Card.Img
-                    variant="top"
-                    src={user.avatar}
-                    style={{ height: "400px" }}
-                  />
-                  <Card.Body>
-                    <Card.Title>{user.fullname}</Card.Title>
-                    <Card.Text>{user.desc}</Card.Text>
-                  </Card.Body>
-                </div>
+               <CardProfile user={user}/>
               )}
             </Card>
           ))}
-        </div>
+        </Container>
       </>
     );
   }
