@@ -9,6 +9,7 @@ import {
   FIND_USER,
 } from "./constants";
 import axios from "axios";
+import { useParams } from "react-router";
 
 export const UserContext = createContext();
 
@@ -35,6 +36,20 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
+  const getUser = async () => {
+    try {
+      const username = useParams().username;
+      const response = await axios.get(`${apiUrl}/getUser/?username=${username}`);
+      if (response.data.success) {
+        dispatch({
+          type: USERS_LOADED_SUCCESS,
+          payload: response.data.users,
+        });
+      }
+    } catch (error) {
+      dispatch({ type: USERS_LOADED_FAIL });
+    }
+  };
   // delete user
   const deleteUser = async (userId) => {
     try {
@@ -49,28 +64,35 @@ const UserContextProvider = ({ children }) => {
 
   // Find user when user is updating user
   const findUser = (userId) => {
-    const user = userState.users.find(user => user._id === userId);
-    dispatch({type: FIND_USER, payload: user})
-  }
-
-  
+    const user = userState.users.find((user) => user._id === userId);
+    dispatch({ type: FIND_USER, payload: user });
+  };
 
   // update user
   const updateUser = async (updateUser) => {
     try {
-      const response = await axios.put(`${apiUrl}/update/${updateUser._id}`, updateUser);
+      const response = await axios.put(
+        `${apiUrl}/updateUser/${updateUser._id}`,
+        updateUser
+      );
       if (response.data.success) {
         dispatch({ type: UPDATE_USER, payload: response.date.user });
         return response.data;
       }
     } catch (error) {
       dispatch({ type: USERS_LOADED_FAIL });
-      
     }
   };
 
   //   User Context Data
-  const userContextData = { getUsers,  deleteUser, updateUser, findUser, userState };
+  const userContextData = {
+    getUsers,
+    getUser,
+    deleteUser,
+    updateUser,
+    findUser,
+    userState,
+  };
 
   return (
     <UserContext.Provider value={userContextData}>

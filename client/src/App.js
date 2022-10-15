@@ -30,10 +30,10 @@ const App = () => {
               <Route exact path="/dashboard" element={<Dashboard />} />
             </Route>
             <Route exact path="/profile" element={<ProtectedRoute />}>
-              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/profile/:username" element={<Profile />} />
             </Route>
             <Route exact path="/edit-profile" element={<ProtectedRoute />}>
-              <Route exact path="/edit-profile" element={<EditProfile />} />
+              <Route exact path="/edit-profile/:id" element={<EditProfile />} />
             </Route>
             <Route exact path="/message" element={<ProtectedRoute />}>
               <Route exact path="/message" element={<Message />} />

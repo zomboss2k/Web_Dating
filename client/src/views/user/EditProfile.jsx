@@ -1,27 +1,57 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Button, Card, Col, Nav, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthContext } from "../../contexts/AuthContext";
 import { UserContext } from "../../contexts/UserContext";
 
-const EditProfileModal = () => {
-  const {
-    userState: { user },
-    updateUser,
-  } = useContext(UserContext);
-
-  // State
-  const [updatedUser, setUpdatedUser] = useState(user);
+const EditProfileModal = ({ props }) => {
+  const { editUser, users } = useContext(UserContext);
+  const [selectedUser, setSelectedUser] = useState({
+    id: "",
+    fullname: "",
+  });
+  const history = useNavigate();
+  const currentUserId = props.match.params.id;
 
   useEffect(() => {
-    setUpdatedUser(user);
-  }, [user]);
+    const userId = currentUserId;
+    const selectedUser = users.find((user) => user.id === userId);
+    setSelectedUser(selectedUser);
+  }, [currentUserId, users]);
 
-  console.log(user);
+  const onChange = (e) => {
+    setSelectedUser({ ...selectedUser, [e.target.name]: e.target.value });
+  };
 
-  const { avtar, fullname, username, email, desc } = updateUser;
+  const onSubmit = (e) => {
+    e.preventDefault();
+    editUser(selectedUser);
+    history.push("/");
+  };
 
-  const onChangeUpdatedPostForm = (event) =>
-    setUpdatedUser({ ...updatedUser, [event.target.name]: event.target.value });
+  // const submitHandler = (e) => {
+  //   e.preventDefault();
+
+  //   dispatch(updateUser({ fullname, email, password, pic }));
+  // };
+
+  // const {
+  //   userState: { user },
+  //   updateUser,
+  // } = useContext(UserContext);
+
+  // // State
+  // const [updatedUser, setUpdatedUser] = useState(user);
+
+  // useEffect(() => {
+  //   setUpdatedUser(user);
+  // }, [user]);
+
+  // const { avatar, fullname, username, email, address, desc } = updateUser;
+
+  // const onChangeUpdatedPostForm = (event) =>
+  //   setUpdatedUser({ ...updatedUser, [event.target.name]: event.target.value });
 
   return (
     <>
@@ -38,7 +68,7 @@ const EditProfileModal = () => {
                           <div
                             className="mx-auto"
                             style={{ width: "140px" }}
-                            value={avtar}
+                            // value={`${avatar}`}
                           >
                             {/* <div
                               className="d-flex justify-content-center align-items-center rounded"
@@ -61,9 +91,9 @@ const EditProfileModal = () => {
                         <Col className="d-flex flex-column flex-sm-row justify-content-between mb-3">
                           <div className="text-center text-sm-left mb-2 mb-sm-0">
                             <h4 className="pt-sm-2 pb-1 mb-0 text-nowrap">
-                              John Smith
+                              {selectedUser.fullname}
                             </h4>
-                            <p className="mb-0">@johnny.s</p>
+                            {/* <p className="mb-0">{email}</p> */}
                             <div className="text-muted">
                               <small>Last seen 2 hours ago</small>
                             </div>
@@ -96,20 +126,19 @@ const EditProfileModal = () => {
                                         className="form-control"
                                         type="text"
                                         name="fullname"
-                                        value={fullname}
-                                        onChange={onChangeUpdatedPostForm}
+                                        value={selectedUser.fullname}
+                                        // onChange={onChangeUpdatedPostForm}
                                       />
                                     </div>
                                   </Col>
                                   <Col>
                                     <div className="form-group">
-                                      <label>Username</label>
+                                      <label>Email</label>
                                       <input
                                         className="form-control"
                                         type="text"
-                                        name="username"
-                                        placeholder="johnny.s"
-                                        defaultValue="johnny.s"
+                                        name="email"
+                                        // value={email}
                                       />
                                     </div>
                                   </Col>
@@ -117,11 +146,12 @@ const EditProfileModal = () => {
                                 <Row>
                                   <Col>
                                     <div className="form-group">
-                                      <label>Email</label>
+                                      <label>Address</label>
                                       <input
                                         className="form-control"
                                         type="text"
-                                        placeholder="user@example.com"
+                                        name="address"
+                                        // value={address}
                                       />
                                     </div>
                                   </Col>

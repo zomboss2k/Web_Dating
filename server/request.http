@@ -31,7 +31,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJjM
 
 ###
 
-GET http://localhost:5000/api/getUser
+GET http://localhost:5000/api/user/getUser
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJjMjYyMjc2M2ZkMDM3ZGNlYTNkNmUiLCJpYXQiOjE2NjQ0NTQ2Nzh9.MKFuSpLOIb7Yh9_c1dQ7z9n69TzDUX6oOu4BweWU4to
 
 ###
@@ -55,3 +55,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJjM
     ],
     "desc": "Tôi yêu em"
 }
+
+###
+
+GET http://localhost:5000/api/user/getUser/zomboss
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MzJjMjYyMjc2M2ZkMDM3ZGNlYTNkNmUiLCJpYXQiOjE2NjQ0NTQ2Nzh9.MKFuSpLOIb7Yh9_c1dQ7z9n69TzDUX6oOu4BweWU4to

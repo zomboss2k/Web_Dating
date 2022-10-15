@@ -6,8 +6,12 @@ router.post("/register", authCtrl.register);
 
 router.post("/login", authCtrl.login);
 
-// router.post("/logout", authCtrl.logout);
-
 router.get("/", verifyToken, authCtrl.accessToken);
+
+router.get("/getUser", verifyToken, authCtrl.getUser);
+
+router.get("/getUser/:username", verifyToken, authCtrl.getOneUser);
+
+router.put("/updateUser/:id", verifyToken, authCtrl.updateUser);
 
 module.exports = router;

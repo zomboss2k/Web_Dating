@@ -8,6 +8,7 @@ import Messager from "./Messager";
 const NavbarMenu = () => {
   const {
     authState: {
+      user: { id },
       user: { fullname },
       user: { avatar },
       user: { email },
@@ -22,7 +23,7 @@ const NavbarMenu = () => {
       <div className="vertical-nav bg-white">
         <div className="py-4 px-3  bg-light">
           <div className="media d-flex align-items-center">
-            <Link to="/profile">
+            <Link to={`/profile/${AuthContext.id}`}>
               <img
                 src={avatar}
                 alt="..."
