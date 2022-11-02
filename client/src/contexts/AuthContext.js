@@ -1,7 +1,13 @@
 // Quản lý xác thực người dùng
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useEffect, useState } from "react";
 import { authReducer } from "../reducers/authReducer";
-import { apiUrl, LOCAL_STORAGE_TOKEN_NAME } from "./constants";
+import {
+  apiUrl,
+  LOCAL_STORAGE_TOKEN_NAME,
+  USERS_LOADED_FAIL,
+  UPDATE_USER,
+  USERS_LOADED_SUCCESS,
+} from "./constants";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -13,6 +19,7 @@ const AuthContextProvider = ({ children }) => {
     isAuthenticated: false,
     user: null,
   });
+
   // Authentication
   const loadUser = async () => {
     if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
@@ -91,7 +98,47 @@ const AuthContextProvider = ({ children }) => {
     });
   };
 
-  const authContextData = { loginUser, registerUser, logoutUser, authState };
+  // update user
+  const updateUser = async (updateUser) => {
+    try {
+      const response = await axios.put(
+        `${apiUrl}/updateUser/${updateUser._id}`,
+        updateUser
+      );
+      if (response.data.success) {
+        dispatch({ type: UPDATE_USER, payload: response.data.user });
+        return response.data;
+      }
+    } catch (error) {
+      dispatch({ type: USERS_LOADED_FAIL });
+    }
+  };
+
+  const getUser = async (userName) => {
+    try {
+      const response = await axios.get(
+        `${apiUrl}/getUser/${userName.username}`,
+        userName
+      );
+      if (response.data.success) {
+        dispatch({
+          type: USERS_LOADED_SUCCESS,
+          payload: response.data.users,
+        });
+      }
+    } catch (error) {
+      dispatch({ type: USERS_LOADED_FAIL });
+    }
+  };
+
+  const authContextData = {
+    loginUser,
+    registerUser,
+    logoutUser,
+    updateUser,
+    getUser,
+    authState,
+  };
 
   //   return provider
   return (

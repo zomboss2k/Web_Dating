@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema(
   {
-    
     username: {
       type: String,
       required: true,
@@ -15,7 +14,7 @@ const userSchema = new mongoose.Schema(
       // required: true,
       trim: true, // loại bỏ khoảng trắng
       maxlength: 25,
-      default: ""
+      default: "",
     },
     email: {
       type: String,
@@ -28,12 +27,13 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
     avatar: {
-      type: String,
+      type: Object,
       default:
-        "https://res.cloudinary.com/zomboss/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1661182037/test/rcu0hru5dhn7zg4fmcdz.jpg",
+        "https://toigingiuvedep.vn/wp-content/uploads/2022/01/anh-meo-cute.jpg",
     },
     age: { type: Number, default: "" },
     gender: { type: String, default: "" },
+    gender_like: { type: String, default: "" },
     mobile: { type: String, default: "" },
     address: { type: String, default: "" },
     images: {
@@ -41,6 +41,7 @@ const userSchema = new mongoose.Schema(
       default: [
         "https://img.vn/uploads/danhmuc/australia-1564026865-dudpi.jpg",
         "https://znews-photo.zingcdn.me/w660/Uploaded/qhj_yvobvhfwbv/2018_07_18/Nguyen_Huy_Binh1.jpg",
+        "https://static.wixstatic.com/media/9d8ed5_b458c1421a5c47909d967d1a994c1089~mv2.jpg/v1/fit/w_1000,h_681,al_c,q_80/file.jpg",
       ],
     },
     desc: { type: String, default: "" },

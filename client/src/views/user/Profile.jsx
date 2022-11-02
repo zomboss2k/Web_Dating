@@ -1,4 +1,4 @@
-import { React, useContext, useEffect } from "react";
+import { React, useContext } from "react";
 import {
   MDBCol,
   MDBRow,
@@ -11,19 +11,29 @@ import {
 } from "mdb-react-ui-kit";
 import { AuthContext } from "../../contexts/AuthContext";
 import SlideImage from "./SlideImage";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../contexts/UserContext";
+
 const Profile = () => {
   const {
-    userState: { users },
-    getUser,
-  } = useContext(UserContext);
+    authState: {
+      user: { avatar },
+      user: { fullname },
+      user: { age },
+      user: { mobile },
+      user: { address },
+      user: { gender },
+      user: { desc },
+      user,
+      getUser,
+    },
+  } = useContext(AuthContext);
 
-  useEffect(() => {
-    getUser();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  let navigate = useNavigate();
 
+  const chooseUser = () => {
+    navigate(`/edit-profile/${user._id}`);
+  };
 
   return (
     <div className="">
@@ -40,29 +50,43 @@ const Profile = () => {
                 style={{ width: "150px" }}
               >
                 <MDBCardImage
-                  src={users.avatar}
+                  src={avatar}
                   alt="Generic placeholder image"
                   className="mt-4 mb-2 img-thumbnail"
                   fluid
                   style={{ width: "150px", zIndex: "1", height: "155px" }}
                 />
-                <Link
+                {/* <Link
                   color="dark"
-                  to={`/edit-profile/${AuthContext._id}`}
+                  to={`/edit-profile/${user._id}`}
                   // onClick={chooseUser.bind(this, _id)}
                   style={{ height: "36px", overflow: "visible", zIndex: 1 }}
                 >
-                  <MDBBtn outline style={{ width: "100%" }}>
-                    Edit profile
-                  </MDBBtn>
-                </Link>
+                  
+                </Link> */}
+                <MDBBtn
+                  color="dark"
+                  outline
+                  onClick={chooseUser.bind(this)}
+                  style={{ height: "36px", overflow: "visible", zIndex: 1 }}
+                >
+                  Edit profile
+                </MDBBtn>
+                <MDBBtn
+                  color="dark"
+                  outline
+                  onClick={chooseUser.bind(this)}
+                  style={{ height: "36px", overflow: "visible", zIndex: 1 }}
+                >
+                  message
+                </MDBBtn>
               </div>
               <div
                 className="ms-3 ml-4 text-black"
                 style={{ marginTop: "130px" }}
               >
-                <MDBTypography tag="h5">{users.fullname}</MDBTypography>
-                <MDBCardText>{users.address}</MDBCardText>
+                <MDBTypography tag="h5">{fullname}</MDBTypography>
+                <MDBCardText>{address}</MDBCardText>
               </div>
             </div>
             <div
@@ -71,21 +95,21 @@ const Profile = () => {
             >
               <div className="d-flex justify-content-end text-center py-1">
                 <div>
-                  <MDBCardText className="mb-1 h5">{users.gender}</MDBCardText>
+                  <MDBCardText className="mb-1 h5">{gender}</MDBCardText>
                   <MDBCardText className="small text-muted mb-0">
                     Giới tính
                   </MDBCardText>
                 </div>
                 <div className="px-3">
-                  <MDBCardText className="mb-1 h5">{users.age}</MDBCardText>
+                  <MDBCardText className="mb-1 h5">{age}</MDBCardText>
                   <MDBCardText className="small text-muted mb-0">
                     Năm Sinh
                   </MDBCardText>
                 </div>
                 <div>
-                  <MDBCardText className="mb-1 h5">{users.mobile}</MDBCardText>
+                  <MDBCardText className="mb-1 h5">{gender}</MDBCardText>
                   <MDBCardText className="small text-muted mb-0">
-                    Số điện thoại
+                    Giới tính
                   </MDBCardText>
                 </div>
               </div>
@@ -94,7 +118,7 @@ const Profile = () => {
               <div className="mb-5">
                 <p className="lead fw-normal mb-1">About</p>
                 <div className="p-4" style={{ backgroundColor: "#f8f9fa" }}>
-                  <MDBCardText className="font-italic mb-1">{users.desc}</MDBCardText>
+                  <MDBCardText className="font-italic mb-1">{desc}</MDBCardText>
                 </div>
               </div>
               <div className="d-flex justify-content-between align-items-center mb-4">

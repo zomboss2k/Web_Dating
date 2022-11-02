@@ -1,18 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Nav, Tabs, Tab } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
+import { UserContext } from "../../contexts/UserContext";
 import IsMath from "./IsMath";
 import Messager from "./Messager";
 
 const NavbarMenu = () => {
   const {
     authState: {
-      user: { id },
       user: { fullname },
       user: { avatar },
       user: { email },
     },
+    user,
     logoutUser,
   } = useContext(AuthContext);
 
@@ -23,7 +24,7 @@ const NavbarMenu = () => {
       <div className="vertical-nav bg-white">
         <div className="py-4 px-3  bg-light">
           <div className="media d-flex align-items-center">
-            <Link to={`/profile/${AuthContext.id}`}>
+            <Link to={`/profile`}>
               <img
                 src={avatar}
                 alt="..."

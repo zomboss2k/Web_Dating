@@ -15,6 +15,7 @@ const RegisterForm = () => {
     fullname: "",
     age: "",
     gender: "",
+    gender_like: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -29,7 +30,8 @@ const RegisterForm = () => {
     // age,
     // mobile,
     email,
-    // gender,
+    gender,
+    gender_like,
     password,
     confirmPassword,
   } = registerForm;
@@ -106,6 +108,42 @@ const RegisterForm = () => {
           />
         </Form.Group>
 
+        <Form.Select
+          size="lg"
+          className="form-select"
+          name="gender"
+          value={gender}
+          required
+          onChange={onChangeRegisterForm}
+        >
+          <option>Giới tính</option>
+          <option value="man">Nam</option>
+          <option value="woman">Nữ</option>
+        </Form.Select>
+
+        {/* <Form.Select
+          size="lg"
+          className="form-select"
+          name=""
+          value={gender_like}
+          onChange={onChangeRegisterForm}
+        >
+          <option>Giới tính mà bạn yêu thích</option>
+          <option value="man">Nam</option>
+          <option value="woman">Nữ</option>
+        </Form.Select> */}
+
+        <Form.Select
+          value={gender_like}
+          name="gender_like"
+          onChange={onChangeRegisterForm}
+          aria-label="Default select example"
+        >
+          <option>Giới tính mà bạn yêu thích</option>
+          <option value="man">Nam</option>
+          <option value="woman">Nữ</option>
+        </Form.Select>
+
         {/* <Form.Group className="my-2">
           <Form.Control
             type="text"
@@ -162,9 +200,9 @@ const RegisterForm = () => {
         </Form.Group>
 
         {/* <Link to="/onboarding"> */}
-          <Button className="my-2" variant="success" type="submit">
-            Đăng Ký
-          </Button>
+        <Button className="my-2" variant="success" type="submit">
+          Đăng Ký
+        </Button>
         {/* </Link> */}
       </Form>
       <p>

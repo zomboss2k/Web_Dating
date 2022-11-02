@@ -9,7 +9,7 @@ import {
   FIND_USER,
 } from "./constants";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 
 export const UserContext = createContext();
 
@@ -22,34 +22,38 @@ const UserContextProvider = ({ children }) => {
   });
 
   // get all users
-  const getUsers = async () => {
+  // const getUsers = async () => {
+  //   try {
+  //     const response = await axios.get(`${apiUrl}/getUser`);
+  //     if (response.data.success) {
+  //       dispatch({
+  //         type: USERS_LOADED_SUCCESS,
+  //         payload: response.data.users,
+  //       });
+  //     }
+  //     console.log((userState.users.gender_like = userState.users.gender));
+  //   } catch (error) {
+  //     dispatch({ type: USERS_LOADED_FAIL });
+  //   }
+  // };
+
+  const getGenderUsers = async (gender) => {
     try {
-      const response = await axios.get(`${apiUrl}/getUser`);
+      const response = await axios.get(
+        `${apiUrl}/getGenderUser?${gender.gender_like}`
+      );
       if (response.data.success) {
         dispatch({
           type: USERS_LOADED_SUCCESS,
-          payload: response.data.users,
+          payload: response.data.user,
         });
       }
+      console.log(getGenderUsers);
     } catch (error) {
       dispatch({ type: USERS_LOADED_FAIL });
     }
   };
 
-  const getUser = async () => {
-    try {
-      const username = useParams().username;
-      const response = await axios.get(`${apiUrl}/getUser/?username=${username}`);
-      if (response.data.success) {
-        dispatch({
-          type: USERS_LOADED_SUCCESS,
-          payload: response.data.users,
-        });
-      }
-    } catch (error) {
-      dispatch({ type: USERS_LOADED_FAIL });
-    }
-  };
   // delete user
   const deleteUser = async (userId) => {
     try {
@@ -62,35 +66,10 @@ const UserContextProvider = ({ children }) => {
     }
   };
 
-  // Find user when user is updating user
-  const findUser = (userId) => {
-    const user = userState.users.find((user) => user._id === userId);
-    dispatch({ type: FIND_USER, payload: user });
-  };
-
-  // update user
-  const updateUser = async (updateUser) => {
-    try {
-      const response = await axios.put(
-        `${apiUrl}/updateUser/${updateUser._id}`,
-        updateUser
-      );
-      if (response.data.success) {
-        dispatch({ type: UPDATE_USER, payload: response.date.user });
-        return response.data;
-      }
-    } catch (error) {
-      dispatch({ type: USERS_LOADED_FAIL });
-    }
-  };
-
   //   User Context Data
   const userContextData = {
-    getUsers,
-    getUser,
+    getGenderUsers,
     deleteUser,
-    updateUser,
-    findUser,
     userState,
   };
 

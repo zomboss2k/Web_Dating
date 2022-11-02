@@ -144,8 +144,18 @@ body {
   width: 0 !important;
   display: none;
 }
+/* message */
+.scrollSown {
+  height: 63vh;
+  overflow: auto;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
 
-/*  */
+.scrollSown::-webkit-scrollbar {
+  width: 0 !important;
+  display: none;
+}
 
 .slider_img {
   position: relative;
@@ -193,4 +203,11 @@ body {
   transition-duration: 1s;
   transform: scale(1.08);
 }
-/*  */
+
+.form-select {
+  height: 38px;
+  display: block;
+  width: 100%;
+  border-radius: 7px;
+}
+/* //////////// */

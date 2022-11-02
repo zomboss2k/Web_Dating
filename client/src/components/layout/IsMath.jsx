@@ -5,12 +5,12 @@ import { UserContext } from "../../contexts/UserContext";
 const IsMath = () => {
   const {
     userState: { users, userLoading },
-    getUsers,
+    // getUsers,
   } = useContext(UserContext);
 
   useEffect(() => {
     const fetchData = async () => {
-      getUsers();
+      // getUsers();
     };
     fetchData();
   }, []);

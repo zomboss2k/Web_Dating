@@ -6,11 +6,12 @@ import CardProfile from "./user/CardProfile";
 const Dashboard = () => {
   const {
     userState: { users, userLoading },
-    getUsers,
+    getGenderUsers,
   } = useContext(UserContext);
 
+  const [val, setVal] = useState("");
   useEffect(() => {
-    getUsers();
+    getGenderUsers();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -55,13 +56,10 @@ const Dashboard = () => {
           }}
           onClick={nextSlide}
         />
-
         <Container style={{ marginTop: "15px", height: "500px" }}>
           {users.map((user, i) => (
             <Card key={user._id} style={{ width: "18rem", margin: "auto" }}>
-              {i === current && (
-               <CardProfile user={user}/>
-              )}
+              {i === current && <CardProfile user={user} />}
             </Card>
           ))}
         </Container>

@@ -29,7 +29,16 @@ const authCtrl = {
   // @controllers POST api/register
   // @access public
   register: async (req, res) => {
-    const { username, fullname, age, mobile, email, gender, password } = req.body;
+    const {
+      username,
+      fullname,
+      age,
+      mobile,
+      email,
+      gender,
+      gender_like,
+      password,
+    } = req.body;
 
     if (!username || !email || !password)
       return res.status(404).json({
@@ -71,6 +80,7 @@ const authCtrl = {
         mobile,
         email,
         gender,
+        gender_like,
         password: hashedPassword,
       });
 
@@ -151,6 +161,19 @@ const authCtrl = {
     try {
       const users = await User.find({ users: req.userId });
       res.json({ success: true, users });
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ success: false, message: error.message });
+    }
+  },
+
+  getGenderUser: async (req, res) => {
+    try {
+      const users = await User.find({
+        gender_like: { $eq: req.query.gender },
+      });
+      res.json({ success: true, users });
+      console.log(users);
     } catch (error) {
       console.log(error);
       res.status(500).json({ success: false, message: error.message });
